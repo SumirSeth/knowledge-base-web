@@ -1,42 +1,26 @@
-# Content v2 Minimal Starter
+# Knowledge Base Web App
 
-Look at the [Content documentation](https://content.nuxt.com/) to learn more.
+This is the Knowledge Base Web app built with nuxt.js and nuxt-content module. It uses the [knowledge-base](https://github.com/sumirseth/knowledge-base) repository as its content source.
 
-## Setup
+## To Reproduce:
+One can populate the `content` folder within the repository with the *contents* from your own knowledge-base. <br>
+Make neccessary changes in the `pages/index.vue` file to change how the index page looks and what content is displayed.
+Similarly, make neccessary changes in the `pages/search.vue` file to change how the search algorithm. <br>
+Make sure to have similar file structure in the `content` folder as in the `pages` folder. Use a *catch-all* route in `pages` folder. 
 
-Make sure to install the dependencies:
+Refer to the [nuxt-content](https://content.nuxt.com/get-started/installation) documentation for more information.
+
+## To Run:
 
 ```bash
-# yarn
-yarn install
-
-# npm
 npm install
-
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
 npm run dev
 ```
 
-## Production
-
-Build the application for production:
+## To Deploy:
 
 ```bash
-npm run build
+npm run generate
 ```
 
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The generated static files will be available in the `dist` folder.
