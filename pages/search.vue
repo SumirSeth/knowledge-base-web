@@ -4,7 +4,8 @@
     <p class="p-1">Enter a tag, for example: <code>maths</code> or <code>clothing</code></p>
     <p class="p-1">You can search in the video(s) category by adding <code>video</code> or <code>videos</code> to your search.</p>
     <p class="p-1">You can search in the research category by adding <code>research</code> or <code>research papers</code> to your search.</p>
-    <p class="p-1">You can search in the books category by adding <code>book</code> or <code>books</code> to your search.</p> 
+    <p class="p-1">You can search in the books category by adding <code>book</code> or <code>books</code> to your search.</p>
+    <p class="p-1">You can search in the notes category by adding <code>note</code> or <code>notes</code> to your search.</p>
     <input class="border border-blue-500 rounded-lg my-4 w-80 py-1 m-1" type="text" placeholder="maths, differential equations" v-model="tags" @keyup.enter="fetchPosts" >
     <button class="bg-blue-500 text-white rounded-lg px-3 py-2 mx-1 my-4" @click="fetchPosts">Search</button>
     <button class="bg-blue-500 text-white rounded-lg px-3 py-2 mx-1 my-4" @click="success=false; tags=''; err=false">Clear</button>
@@ -63,6 +64,14 @@ const fetchPosts = () => {
       t.push('books')
       }
     }
+
+    if (posts.value[i]._dir === 'notes'){
+      if(!t.includes('note')){
+      t.push('note')
+      t.push('notes')
+      }
+    }
+
     
     for (let j in t) {
       if (String(t[j]).toLowerCase() === tags.value.toLowerCase()){
