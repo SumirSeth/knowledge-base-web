@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentDoc class=" prose prose-sm lg:prose-base" />
+    <ContentDoc class="prose prose-sm lg:prose-base dark:prose-invert" />
   </div>
 </template>
 
