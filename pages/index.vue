@@ -71,10 +71,19 @@
 
 <script lang="ts" setup>
 
-const videoShow = ref(false)
-const bookShow = ref(false)
-const noteShow = ref(false)
-const researchShow = ref(false)
+const videoShow = ref(true)
+const bookShow = ref(true)
+const noteShow = ref(true)
+const researchShow = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    videoShow.value = false
+    bookShow.value = false
+    noteShow.value = false
+    researchShow.value = false
+  }, 1000)
+})
 
 const {data: allPosts} = await useAsyncData('posts', () => queryContent('').find())
 

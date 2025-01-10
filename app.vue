@@ -1,5 +1,4 @@
 <template>
-  <Body class="dark:bg-black" />
   <div class="min-h-screen transition-colors duration-200 dark:bg-dark-bg dark:text-dark-text">
     <div class="flex justify-between items-center p-4">
       <p>
