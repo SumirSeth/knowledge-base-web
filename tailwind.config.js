@@ -7,7 +7,7 @@ export default {
       colors: {
         // Add dark mode colors
         dark: {
-          bg: '#1a1a1a',
+          bg: '#000',
           text: '#ffffff',
           link: '#60a5fa',
           secondary: '#9ca3af'

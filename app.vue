@@ -1,9 +1,11 @@
 <template>
+  <Body class="dark:bg-black" />
   <div class="min-h-screen transition-colors duration-200 dark:bg-dark-bg dark:text-dark-text">
     <div class="flex justify-between items-center p-4">
       <p>
         <a href="/">
           <img alt="Nuxt logo" src="/favicon.png" style="height: 7vh;" class="rounded-md"/>
+          <p class="opacity-70 italic font-thin">(click to go home)</p>
         </a>
       </p>
       <div class="flex items-center gap-4">
