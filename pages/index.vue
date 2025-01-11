@@ -10,6 +10,7 @@
           <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">
             {{ post.title }}
           </a>
+          <a :href="post.video" class="font-mono lg:text-sm text-xs dark:text-dark-secondary"> (🔗)</a>
           <br>
           <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
           <br>
