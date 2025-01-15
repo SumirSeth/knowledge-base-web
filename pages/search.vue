@@ -1,4 +1,5 @@
 <template>
+  <Title>Knowledge Base - Search</Title>
   <div>
     <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1">Enter a tag: </h1>
     <p class="p-1">Enter a tag, for example: <code>maths</code> or <code>clothing</code></p>
