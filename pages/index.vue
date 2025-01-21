@@ -91,6 +91,20 @@
       </div>
     </div>
 
+    <div class="archive lg:py-7 py-4">
+      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text opacity-40">/archive<button @click="archiveShow = !archiveShow">{{ archiveShow ? '🔽' : '▶️' }}</button></h1>
+      <ul v-if="archiveShow" class="list-decimal list-inside">
+        <li class="p-1" v-for="post in archivePosts" :key="post.slug">
+          <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
+          </a>
+          <br>
+          <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
+          <br>
+          <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
+        </li>
+      </ul>
+    </div>
+
 
   </div>
 </template>
@@ -102,6 +116,7 @@ const bookShow = ref(true)
 const noteShow = ref(true)
 const researchShow = ref(true)
 const philosophyShow = ref(true)
+const archiveShow = ref(true)
 
 onMounted(() => {
   setTimeout(() => {
@@ -110,6 +125,7 @@ onMounted(() => {
     noteShow.value = false
     researchShow.value = false
     philosophyShow.value = false
+    archiveShow.value = false
   }, 10)
 })
 
@@ -122,6 +138,8 @@ const researchPosts = allPosts.value?.filter(post => post._dir==='research')
 const bookPosts = allPosts.value?.filter(post => post._dir==='books')
 
 const notePosts = allPosts.value?.filter(post => post._dir==='notes')
+
+const archivePosts = allPosts.value?.filter(post => post._dir==='archive')
 
 const { data: philosophyPosts } = await useAsyncData('philosophy', () => queryContent('notes/philosophy').find())
 

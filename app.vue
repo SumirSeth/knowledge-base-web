@@ -40,3 +40,22 @@ onMounted(() => {
   initDarkMode()
 })
 </script>
+
+<style>
+::-webkit-scrollbar {
+  width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(235, 235, 235, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(53, 53, 53);
+  border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(83, 192, 235);
+}
+</style>
