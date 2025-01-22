@@ -84,7 +84,11 @@ html {
 }
 
 .prose a {
-  @apply text-indigo-600 dark:text-indigo-400 no-underline hover:underline decoration-2 underline-offset-2 transition-all duration-300;
+  @apply text-indigo-600 dark:text-indigo-400 no-underline hover:underline decoration-2 underline-offset-2 transition-all duration-500;
+}
+
+.prose h1 {
+  @apply transition-all duration-500;
 }
 
 body {
