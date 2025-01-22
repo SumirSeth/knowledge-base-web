@@ -1,39 +1,86 @@
 <template>
   <Title>Knowledge Base - Search</Title>
-  <div>
-    <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1">Enter a tag: </h1>
-    <p class="p-1">Enter a tag, for example: <code>maths</code> or <code>clothing</code></p>
-    <p class="p-1">You can search in the video(s) category by adding <code>video</code> or <code>videos</code> to your search.</p>
-    <p class="p-1">You can search in the research category by adding <code>research</code> or <code>research papers</code> to your search.</p>
-    <p class="p-1">You can search in the books category by adding <code>book</code> or <code>books</code> to your search.</p>
-    <p class="p-1">You can search in the notes category by adding <code>note</code> or <code>notes</code> to your search.</p>
-    <input class="border border-blue-500 rounded-lg my-4 w-80 py-1 m-1 dark:bg-black" type="text" placeholder="maths, differential equations" v-model="tags" @keyup.enter="fetchPosts" >
-    <button class="bg-blue-500 text-white rounded-lg px-3 py-2 mx-1 my-4" @click="fetchPosts">Search</button>
-    <button class="bg-blue-500 text-white rounded-lg px-3 py-2 mx-1 my-4" @click="success=false; tags=''; err=false">Clear</button>
-    
-    <div v-if="success">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1">Results</h1>
-      <ul class="list-decimal list-inside">
-        <NuxtLink class="text-blue-900 lg:text-xl text-base underline underline-offset-4 dark:text-dark-link" :to="post.link" v-for="post in fetchedPost">
-        
-          <li class="p-1">{{ post.title }}</li>
-        
-        </NuxtLink>
+  <div class="space-y-6">
+    <!-- Search Header -->
+    <div>
+      <h1 class="text-3xl lg:text-5xl font-bold">Search Knowledge Base</h1>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">
+        Search through all content using tags
+      </p>
+    </div>
+
+    <!-- Search Input -->
+    <div class="flex flex-wrap gap-2">
+      <div class="relative flex-1 max-w-md">
+        <input 
+          type="text" 
+          placeholder="Enter tags (e.g. maths, coding)" 
+          v-model="tags" 
+          @keyup.enter="fetchPosts"
+          class="w-full px-4 py-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-500/20 dark:focus:ring-blue-400/20 outline-none transition-all"
+        >
+      </div>
+      <button 
+        @click="fetchPosts"
+        class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+      >
+        Search
+      </button>
+      <button 
+        @click="clearSearch"
+        class="px-4 py-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 rounded-lg transition-colors"
+      >
+        Clear
+      </button>
+    </div>
+
+    <!-- Search Tips -->
+    <div class="p-4 bg-white/50 dark:bg-slate-800/50 rounded-xl backdrop-blur-sm">
+      <h2 class="font-semibold mb-2">Search Tips</h2>
+      <ul class="space-y-1 text-sm text-slate-600 dark:text-slate-400">
+        <li>• Search videos with tags: <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">video</code> or <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">videos</code></li>
+        <li>• Search research with: <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">research</code> or <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">papers</code></li>
+        <li>• Search books with: <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">book</code> or <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">books</code></li>
+        <li>• Search notes with: <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">note</code> or <code class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-700 rounded">notes</code></li>
       </ul>
     </div>
-    <p v-if="err" class="error text-red-600 text-xl font-bold">No results found</p>
+
+    <!-- Results -->
+    <div v-if="success" class="space-y-4">
+      <h2 class="text-xl font-bold">Search Results</h2>
+      <div class="space-y-3">
+        <NuxtLink 
+          v-for="post in fetchedPost" 
+          :key="post.link"
+          :to="post.link"
+          class="block p-4 bg-white/50 dark:bg-slate-800/50 hover:bg-white/70 dark:hover:bg-slate-800/70 rounded-lg backdrop-blur-sm transition-all"
+        >
+          <h3 class="text-lg font-medium text-blue-600 dark:text-blue-400">{{ post.title }}</h3>
+          <p v-if="post.description" class="mt-1 text-sm text-slate-600 dark:text-slate-400">{{ post.description }}</p>
+        </NuxtLink>
+      </div>
+    </div>
+
+    <!-- No Results -->
+    <div v-if="err" class="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
+      No results found. Try different tags.
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-
 const err = ref(false)
-
 const tags = ref("")
 const success = ref(false)
-
-const { data : posts } = await useAsyncData('posts', () => queryContent('').find())
+const { data: posts } = await useAsyncData('posts', () => queryContent('').find())
 const fetchedPost = ref([])
+
+const clearSearch = () => {
+  tags.value = ''
+  success.value = false
+  err.value = false
+  fetchedPost.value = []
+}
 
 const fetchPosts = () => {
   tags.value = tags.value.trim()

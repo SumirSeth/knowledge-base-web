@@ -1,111 +1,170 @@
 <template>
   <Title>Knowledge Base</Title>
-  <div class="dark:text-dark-text">
-
-
-
-    <div class="videos lg:py-7 py-4">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text"">/videos<button @click="videoShow = !videoShow">{{ videoShow ? '🔽' : '▶️' }}</button></h1>
-      <ul v-if="videoShow" class="list-decimal list-inside">
-        <li class="p-1" v-for="post in videoPosts" :key="post.slug">
-          <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">
-            {{ post.title }}
-          </a>
-          <a :href="post.video" class="font-mono lg:text-sm text-xs dark:text-dark-secondary"> (🔗)</a>
-          <br>
-          <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-          <br>
-          <span class="font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
-          <br>
-          <span class="font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>source:</u> {{ post.source }}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="books lg:py-7 py-4">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text">/books <button @click="bookShow = !bookShow">{{ bookShow ? '🔽' : '▶️' }}</button></h1>
-      <ul v-if="bookShow" class="list-decimal list-inside">
-        <li class="p-1" v-for="post in bookPosts" :key="post.slug">
-          <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
-
-          </a>
-          <br>
-          <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-          <br>
-          <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
-          <br>
-          <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>author(s):</u> {{ post.author }}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="research lg:py-7 py-4">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text">/research<button @click="researchShow = !researchShow">{{ researchShow ? '🔽' : '▶️' }}</button></h1>
-      <ul v-if="researchShow" class="list-decimal list-inside">
-        <li class="p-1" v-for="post in researchPosts" :key="post.slug">
-          <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
-
-          </a>
-          <br>
-          <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-          <br>
-          <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="notes lg:py-7 py-4">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text">/notes <button @click="noteShow = !noteShow">{{ noteShow ? '🔽' : '▶️' }}</button></h1>
-      <div v-if="noteShow">
-
-
-        <div class="lg:ml-3 ml-2">
-          <h2 class="lg:text-3xl text-xl font-bold py-2 p-1 dark:text-dark-text">/philosphy <button @click="philosophyShow = !philosophyShow">{{ philosophyShow ? '🔽' : '▶️' }}</button></h2>
-          <ul v-if="philosophyShow" class="list-decimal list-inside">
-            <li class="p-1" v-for="post in philosophyPosts" :key="post.slug">
-              <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
-
+  <div class="dark:text-dark-text max-w-4xl mx-auto">
+    <!-- Section Grid -->
+    <div class="grid gap-6  lg:gap-10">
+      <!-- Videos Section -->
+      <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl lg:text-4xl font-bold">/videos</h2>
+          <button 
+            @click="videoShow = !videoShow"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <span class="text-lg">{{ videoShow ? '↑' : '↓' }}</span>
+          </button>
+        </div>
+        
+        <div v-if="videoShow" class="space-y-6">
+          <article v-for="post in videoPosts" :key="post.slug" 
+            class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
+            <div class="flex justify-between items-start">
+              <a :href="post._file?.slice(0, -3)" 
+                class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {{ post.title }}
               </a>
-              <br>
-              <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-              <br>
-              <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
+              <a :href="post.video" 
+                class="text-sm text-slate-500 hover:text-blue-500 transition-colors" 
+                target="_blank">
+                Watch ↗
+              </a>
+            </div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span v-for="tag in post.tags" :key="tag"
+                class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
+                {{ tag }}
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
 
-            </li>
-          </ul>
+      <!-- Books Section -->
+      <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl lg:text-4xl font-bold">/books</h2>
+          <button @click="bookShow = !bookShow"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="text-lg">{{ bookShow ? '↑' : '↓' }}</span>
+          </button>
+        </div>
+        
+        <div v-if="bookShow" class="space-y-6">
+          <article v-for="post in bookPosts" :key="post.slug" 
+            class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
+            <div class="flex justify-between items-start">
+              <a :href="post._file?.slice(0, -3)" 
+                class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {{ post.title }}
+              </a>
+            </div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+            <p class="text-sm text-slate-500">Author: <span v-for="auth in post.author">{{ auth }}<span v-if="auth !== post.author[post.author.length - 1]">, </span></span></p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span v-for="tag in post.tags" :key="tag"
+                class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                {{ tag }}
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Research Section -->
+      <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl lg:text-4xl font-bold">/research</h2>
+          <button @click="researchShow = !researchShow"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="text-lg">{{ researchShow ? '↑' : '↓' }}</span>
+          </button>
+        </div>
+        
+        <div v-if="researchShow" class="space-y-6">
+          <article v-for="post in researchPosts" :key="post.slug" 
+            class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
+            <div class="flex justify-between items-start">
+              <a :href="post._file?.slice(0, -3)" 
+                class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {{ post.title }}
+              </a>
+              <span class="text-sm text-slate-500">{{ post.date }}</span>
+            </div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span v-for="tag in post.tags" :key="tag"
+                class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                {{ tag }}
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Notes Section -->
+      <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl lg:text-4xl font-bold">/notes</h2>
+          <button 
+            @click="noteShow = !noteShow"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          >
+            <span class="text-lg">{{ noteShow ? '↑' : '↓' }}</span>
+          </button>
         </div>
 
-        <ul class="list-decimal list-inside">
-          <li class="p-1" v-for="post in notePosts" :key="post.slug">
-            <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
-              
-            </a>
-            <br>
-            <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-            <br>
-            <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
-          </li>
-        </ul>
+        <div v-if="noteShow" class="space-y-6">
+          <!-- Philosophy Subsection -->
+          <div class="ml-4 space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/10 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xl lg:text-3xl font-bold">/philosophy</h3>
+              <button 
+                @click="philosophyShow = !philosophyShow"
+                class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              >
+                <span class="text-lg">{{ philosophyShow ? '↑' : '↓' }}</span>
+              </button>
+            </div>
 
-        
-      </div>
+            <div v-if="philosophyShow" class="space-y-4">
+              <article v-for="post in philosophyPosts" :key="post.slug" 
+                class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 shadow-lg transition-all">
+                <a :href="post._file?.slice(0, -3)" 
+                  class="block text-lg font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                  {{ post.title }}
+                </a>
+                <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <span v-for="tag in post.tags" :key="tag"
+                    class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                    {{ tag }}
+                  </span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Regular Notes -->
+          <div class="space-y-4">
+            <article v-for="post in notePosts" :key="post.slug" 
+              class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
+              <a :href="post._file?.slice(0, -3)" 
+                class="block text-lg font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {{ post.title }}
+              </a>
+              <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span v-for="tag in post.tags" :key="tag"
+                  class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                  {{ tag }}
+                </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <!-- <div class="archive lg:py-7 py-4">
-      <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text opacity-40">/archive<button @click="archiveShow = !archiveShow">{{ archiveShow ? '🔽' : '▶️' }}</button></h1>
-      <ul v-if="archiveShow" class="list-decimal list-inside">
-        <li class="p-1" v-for="post in archivePosts" :key="post.slug">
-          <a class="text-blue-900 dark:text-dark-link lg:text-xl text-base underline underline-offset-4" :href="post._file?.slice(0, -3)">{{ post.title }}
-          </a>
-          <br>
-          <span class="text-blue-500 dark:text-dark-link italic lg:text-lg text-sm">{{ post.description }}</span>
-          <br>
-          <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
-        </li>
-      </ul>
-    </div> -->
-
-
   </div>
 </template>
 
@@ -129,20 +188,14 @@ onMounted(() => {
   }, 10)
 })
 
-const {data: allPosts} = await useAsyncData('posts', () => queryContent('').find())
 
-const videoPosts = allPosts.value?.filter(post => post._dir==='videos')
-
-const researchPosts = allPosts.value?.filter(post => post._dir==='research')
-
-const bookPosts = allPosts.value?.filter(post => post._dir==='books')
-
-const notePosts = allPosts.value?.filter(post => post._dir==='notes')
-
-const archivePosts = allPosts.value?.filter(post => post._dir==='archive')
-
+const { data: videoPosts } = await useAsyncData('videos', () => queryContent('videos').find())
+const { data: bookPosts } = await useAsyncData('books', () => queryContent('books').find())
+const { data: researchPosts } = await useAsyncData('research', () => queryContent('research').find())
+const { data: notePosts } = await useAsyncData('notes', () => queryContent('notes').find())
 const { data: philosophyPosts } = await useAsyncData('philosophy', () => queryContent('notes/philosophy').find())
 
+// const archivePosts = allPosts.value?.filter(post => post._dir==='archive')
 </script>
 
 <style>

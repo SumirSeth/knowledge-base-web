@@ -1,11 +1,11 @@
 <template>
   <Body class="antialiased font-sans bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900" />
   <div class="min-h-screen transition-all duration-500 dark:text-slate-200 relative">
-    <div class="absolute inset-0 bg-noise opacity-[0.015] dark:opacity-[0.03] pointer-events-none"></div>
+    <!-- <div class="absolute inset-0 bg-noise opacity-[0.015] dark:opacity-[0.03] pointer-events-none"></div> -->
     
     <!-- Header -->
     <header class="sticky top-0 z-50">
-      <div class="absolute inset-0 backdrop-blur-xl bg-white/50 dark:bg-slate-900/70"></div>
+      <div class="absolute inset-0 backdrop-blur-md bg-white/70 dark:bg-slate-950/70"></div>
       <div class="relative max-w-2xl mx-auto flex justify-between items-center px-6 py-4">
         <a href="/" class="group flex items-center space-x-3">
           <div class="relative">
@@ -20,8 +20,8 @@
             @click="toggleDarkMode" 
             class="p-2.5 rounded-full bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 backdrop-blur-sm transition-all duration-300"
           >
-            <span v-if="isDark" class="text-lg">🌙</span>
-            <span v-else class="text-lg">☀️</span>
+          <span v-if="isDark" class="text-lg">◐</span>
+          <span v-else class="text-lg">◑</span>
           </button>
           <a 
             href="/search"
@@ -72,7 +72,7 @@ onMounted(() => {
 } */
 
 ::selection {
-  @apply bg-indigo-500/20;
+  @apply bg-blue-500/20;
 }
 
 html {
@@ -84,7 +84,7 @@ html {
 }
 
 .prose a {
-  @apply text-indigo-600 dark:text-indigo-400 no-underline hover:underline decoration-2 underline-offset-2 transition-all duration-500;
+  @apply text-blue-600 dark:text-blue-400 no-underline hover:underline decoration-2 underline-offset-2 transition-all duration-500;
 }
 
 .prose h1 {
