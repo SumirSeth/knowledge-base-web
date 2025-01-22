@@ -91,7 +91,7 @@
       </div>
     </div>
 
-    <div class="archive lg:py-7 py-4">
+    <!-- <div class="archive lg:py-7 py-4">
       <h1 class="lg:text-5xl text-3xl font-bold py-2 p-1 dark:text-dark-text opacity-40">/archive<button @click="archiveShow = !archiveShow">{{ archiveShow ? '🔽' : '▶️' }}</button></h1>
       <ul v-if="archiveShow" class="list-decimal list-inside">
         <li class="p-1" v-for="post in archivePosts" :key="post.slug">
@@ -103,7 +103,7 @@
           <span class=" font-mono lg:text-sm text-xs dark:text-dark-secondary"><u>tags:</u> {{ post.tags }}</span>
         </li>
       </ul>
-    </div>
+    </div> -->
 
 
   </div>
