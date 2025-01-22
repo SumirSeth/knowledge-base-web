@@ -63,7 +63,7 @@
             <p class="text-sm text-slate-500">Author: <span v-for="auth in post.author">{{ auth }}<span v-if="auth !== post.author[post.author.length - 1]">, </span></span></p>
             <div class="mt-3 flex flex-wrap gap-2">
               <span v-for="tag in post.tags" :key="tag"
-                class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
                 {{ tag }}
               </span>
             </div>
@@ -94,7 +94,7 @@
             <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
             <div class="mt-3 flex flex-wrap gap-2">
               <span v-for="tag in post.tags" :key="tag"
-                class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
                 {{ tag }}
               </span>
             </div>
@@ -137,7 +137,7 @@
                 <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <span v-for="tag in post.tags" :key="tag"
-                    class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                    class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
                     {{ tag }}
                   </span>
                 </div>
@@ -156,7 +156,7 @@
               <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
               <div class="mt-3 flex flex-wrap gap-2">
                 <span v-for="tag in post.tags" :key="tag"
-                  class="px-2 py-1 text-xs rounded-full bg-slate-100 dark:bg-slate-700">
+                  class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
                   {{ tag }}
                 </span>
               </div>
