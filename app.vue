@@ -7,13 +7,13 @@
     <header class="sticky top-0 z-50">
       <div class="absolute inset-0 backdrop-blur-md bg-white/70 dark:bg-slate-950/70"></div>
       <div class="relative max-w-2xl mx-auto flex justify-between items-center px-6 py-4">
-        <a href="/" class="group flex items-center space-x-3">
+        <NuxtLink to="/" class="group flex items-center space-x-3">
           <div class="relative">
             <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg blur opacity-90 group-hover:opacity-50 transition-opacity duration-500"></div>
             <img alt="Logo" src="/favicon.png" class="relative h-9 w-9 rounded-lg" />
           </div>
           <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Knowledge Base</span>
-        </a>
+        </NuxtLink>
         
         <div class="flex items-center space-x-4">
           <button 
@@ -23,12 +23,12 @@
           <span v-if="isDark" class="text-lg">◐</span>
           <span v-else class="text-lg">◑</span>
           </button>
-          <a 
-            href="/search"
+          <NuxtLink 
+            to="/search"
             class="px-4 py-2 rounded-full bg-slate-200/50 dark:bg-slate-800/50 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 backdrop-blur-sm transition-all duration-300 text-sm font-medium text-slate-600 dark:text-slate-300"
           >
             Search
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </header>
@@ -46,8 +46,8 @@
             © {{ new Date().getFullYear() }} Knowledge Base by <a href="https://github.com/sumirseth"><i><u>Sumir Seth</u></i></a>
           </p>
           <div class="flex space-x-6">
-            <a href="/about" class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">About</a>
-            <a href="/archive" class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">Archive</a>
+            <NuxtLink to="/about" class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">About</NuxtLink>
+            <NuxtLink to="/archive" class="text-sm text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300">Archive</NuxtLink>
           </div>
         </div>
       </div>

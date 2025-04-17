@@ -5,6 +5,14 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { prerender: true }
   },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        '/',
+      ]
+    }
+  },
   content:{
     documentDriven: false,
     markdown: {

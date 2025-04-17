@@ -19,10 +19,10 @@
           <article v-for="post in videoPosts" :key="post.slug" 
             class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
             <div class="flex justify-between items-start">
-              <a :href="post._file?.slice(0, -3)" 
+              <NuxtLink :to="post._file?.slice(0, -3)" 
                 class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {{ post.title }}
-              </a>
+              </NuxtLink>
               <a :href="post.video" 
                 class="text-sm text-slate-500 hover:text-blue-500 transition-colors" 
                 target="_blank">
@@ -54,10 +54,10 @@
           <article v-for="post in bookPosts" :key="post.slug" 
             class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
             <div class="flex justify-between items-start">
-              <a :href="post._file?.slice(0, -3)" 
+              <NuxtLink :to="post._file?.slice(0, -3)" 
                 class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {{ post.title }}
-              </a>
+              </NuxtLink>
             </div>
             <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
             <p class="text-sm text-slate-500">Author: <span v-for="auth in post.author">{{ auth }}<span v-if="auth !== post.author[post.author.length - 1]">, </span></span></p>
@@ -85,10 +85,10 @@
           <article v-for="post in researchPosts" :key="post.slug" 
             class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
             <div class="flex justify-between items-start">
-              <a :href="post._file?.slice(0, -3)" 
+              <NuxtLink :to="post._file?.slice(0, -3)" 
                 class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {{ post.title }}
-              </a>
+              </NuxtLink>
               <span class="text-sm text-slate-500">{{ post.date }}</span>
             </div>
             <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
@@ -130,10 +130,10 @@
             <div v-if="philosophyShow" class="space-y-4">
               <article v-for="post in philosophyPosts" :key="post.slug" 
                 class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 shadow-lg transition-all">
-                <a :href="post._file?.slice(0, -3)" 
+                <NuxtLink :to="post._file?.slice(0, -3)" 
                   class="block text-lg font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                   {{ post.title }}
-                </a>
+                </NuxtLink>
                 <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
                 <div class="mt-3 flex flex-wrap gap-2">
                   <span v-for="tag in post.tags" :key="tag"
@@ -149,10 +149,10 @@
           <div class="space-y-4">
             <article v-for="post in notePosts" :key="post.slug" 
               class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
-              <a :href="post._file?.slice(0, -3)" 
+              <NuxtLink :to="post._file?.slice(0, -3)" 
                 class="block text-lg font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 {{ post.title }}
-              </a>
+              </NuxtLink>
               <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
               <div class="mt-3 flex flex-wrap gap-2">
                 <span v-for="tag in post.tags" :key="tag"
