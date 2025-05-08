@@ -1,6 +1,11 @@
 <script lang="ts" setup>
-
 const route = useRoute()
+const isClient = ref(false)
+
+// Only run password check on client side
+onMounted(() => {
+  isClient.value = true
+})
 
 const checkPassword = async () => {
     try {
@@ -11,44 +16,37 @@ const checkPassword = async () => {
             },
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            credentials: 'include', // Add this for cookies if needed
+            }
         })
         
         if (response.data.value) {
             allowed.value = true
         }
-
-        console.log(response)
     } catch (error) {
         console.error('Password verification failed:', error)
     }
 }
 
 const password = ref('')
-
 const allowed = ref(false)
-
 </script>
 
-
 <template>
-    <div v-if="route.params.slug[0] != 'second-year-plan'">
+    <div v-if="route.params.slug[0] !== 'second-year-plan'">
         <ContentDoc class="prose prose-sm lg:prose-base dark:prose-invert"/>
-        
     </div>
-    <div v-else>
-        <div>
+    <div v-else-if="isClient">
+        <div v-if="!allowed">
             <p>Password?</p>
-            <input class="dark:bg-white dark:text-black bg-black text-white rounded-lg" type="password" v-model="password"/>
-            <button class="p-2 dark:bg-white dark:text-black bg-black text-white m-2 rounded-lg" @click="checkPassword">Submit</button>
+            <input class="dark:bg-white dark:text-black bg-black text-white rounded-lg" 
+                   type="password" 
+                   v-model="password"/>
+            <button class="p-2 dark:bg-white dark:text-black bg-black text-white m-2 rounded-lg" 
+                    @click="checkPassword">Submit</button>
         </div>
-        <ContentDoc v-if="allowed" class="prose prose-sm lg:prose-base dark:prose-invert"/>
+        <ContentDoc v-else class="prose prose-sm lg:prose-base dark:prose-invert"/>
     </div>
 </template>
-
-
 
 <style>
 
