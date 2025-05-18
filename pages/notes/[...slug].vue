@@ -2,28 +2,35 @@
 const route = useRoute()
 const isClient = ref(false)
 
+const config = useRuntimeConfig()
+const correctPassword = config.public.PAGE_PASSWORD
+
 // Only run password check on client side
 onMounted(() => {
   isClient.value = true
 })
 
 const checkPassword = async () => {
-    try {
-        const response = await useFetch(`https://ontological-debugging.vercel.app/api/getPassKB`, {
-            method: 'POST',
-            body: {
-                password: password.value
-            },
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
+    // try {
+    //     const response = await useFetch(`https://ontological-debugging.vercel.app/api/getPassKB`, {
+    //         method: 'POST',
+    //         body: {
+    //             password: password.value
+    //         },
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         }
+    //     })
         
-        if (response.data.value) {
-            allowed.value = true
-        }
-    } catch (error) {
-        console.error('Password verification failed:', error)
+    //     if (response.data.value) {
+    //         allowed.value = true
+    //     }
+    // } catch (error) {
+    //     console.error('Password verification failed:', error)
+    // }
+
+    if (password.value === correctPassword) {
+        allowed.value = true
     }
 }
 
@@ -32,7 +39,7 @@ const allowed = ref(false)
 </script>
 
 <template>
-    <div v-if="route.params.slug[0] !== 'second-year-plan'">
+    <div v-if="(route.params.slug[0] !== 'second-year-plan') && (route.params.slug[0] !== 'pixaverse-data')">
         <ContentDoc class="prose prose-sm lg:prose-base dark:prose-invert"/>
     </div>
     <div v-else-if="isClient">

@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/content', '@nuxtjs/tailwindcss'],
+  runtimeConfig: {
+    public: {
+      PAGE_PASSWORD: 'iamajoker'
+    }
+  },
   routeRules: {
     '/': { prerender: true }
   },
