@@ -8,13 +8,15 @@ export default defineNuxtConfig({
     }
   },
   routeRules: {
-    '/': { prerender: true }
+    '/': { prerender: true },
+    '/notes/second-year-plan': { prerender: true },
+    '/notes/pixaverse-data': { prerender: true },
   },
   nitro: {
     prerender: {
       crawlLinks: true,
       routes: [
-        '/',
+        '/', '/notes/second-year-plan', 'notes/pixaverse-data'
       ]
     }
   },
