@@ -56,11 +56,20 @@
 </template>
 
 <script setup>
-const { isDark, toggleDarkMode, initDarkMode } = useDarkMode()
+const { isDark, toggleDarkMode } = useDarkMode()
 
-// Initialize dark mode on client side
 onMounted(() => {
-  initDarkMode()
+  if (process.client) {
+    const savedTheme = localStorage.getItem('darkMode')
+    if (savedTheme) {
+      isDark.value = savedTheme === 'dark'
+    } else {
+      isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    if (isDark.value) {
+      document.documentElement.classList.add('dark')
+    }
+  }
 })
 </script>
 
