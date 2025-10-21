@@ -101,6 +101,38 @@
           </article>
         </div>
       </section>
+      
+      <!-- Films Section -->
+      <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl lg:text-4xl font-bold">/films</h2>
+          <button @click="filmsShow = !filmsShow"
+            class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+            <span class="text-lg">{{ filmsShow ? '↑' : '↓' }}</span>
+          </button>
+        </div>
+        
+        <div v-if="filmsShow" class="space-y-6">
+          <article v-for="post in filmsPosts" :key="post.slug" 
+            class="p-4 rounded-lg outline-dashed outline-1 outline-offset-1 dark:outline-none bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm hover:bg-white/70 dark:hover:bg-slate-800/70 transition-all hover:shadow-xl">
+            <div class="flex justify-between items-start">
+              <NuxtLink :to="post._file?.slice(0, -3)" 
+                class="text-lg lg:text-xl font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {{ post.title }}
+              </NuxtLink>
+              <span class="text-sm text-slate-500">{{ post.date }}</span>
+            </div>
+            <p class="mt-2 text-slate-600 dark:text-slate-300">{{ post.description }}</p>
+            <p class="text-sm text-slate-500">Director: <span v-for="direc in post.director">{{ direc }}<span v-if="direc !== post.director[post.director.length - 1]">, </span></span></p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span v-for="tag in post.tags" :key="tag"
+                class="px-2 py-1 text-xs rounded-full bg-stone-300/70 dark:bg-slate-700">
+                {{ tag }}
+              </span>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <!-- Notes Section -->
       <section class="space-y-4 p-4 bg-white/30 backdrop-blur-sm dark:bg-slate-800/20 brightness-110 rounded-xl shadow-md dark:shadow-lg dark:hover:shadow-2xl dark:hover:shadow-black hover:shadow-2xl transition-shadow duration-300">
@@ -174,6 +206,7 @@ const videoShow = ref(true)
 const bookShow = ref(true)
 const noteShow = ref(true)
 const researchShow = ref(true)
+const filmsShow = ref(true)
 const philosophyShow = ref(true)
 const archiveShow = ref(true)
 
@@ -183,6 +216,7 @@ onMounted(() => {
     bookShow.value = false
     noteShow.value = false
     researchShow.value = false
+    filmsShow.value = false
     philosophyShow.value = false
     archiveShow.value = false
   }, 10)
@@ -192,6 +226,7 @@ onMounted(() => {
 const { data: videoPosts } = await useAsyncData('videos', () => queryContent('videos').find())
 const { data: bookPosts } = await useAsyncData('books', () => queryContent('books').find())
 const { data: researchPosts } = await useAsyncData('research', () => queryContent('research').find())
+const { data: filmsPosts } = await useAsyncData('films', () => queryContent('films').find())
 const { data: notePosts } = await useAsyncData('notes', () => queryContent('notes').find())
 const { data: philosophyPosts } = await useAsyncData('philosophy', () => queryContent('notes/philosophy').find())
 
